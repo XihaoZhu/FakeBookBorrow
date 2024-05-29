@@ -10,7 +10,9 @@ export default function HeadNav(){
   const pathname = usePathname();
 
   return (<>
-    <div className={clsx('mx-auto flex justify-around p-4 flex-wrap align-middle bg-color1 lg:hidden',{
+
+
+    <div className={clsx('mx-auto flex justify-around p-4 flex-wrap align-middle bg-color1 lg:hidden shadow-md',{
       'hidden':pathname !== '/profile/homePage'
     })}>
       {/* logo when in small and middle screen, take a single row */}
@@ -37,13 +39,13 @@ export default function HeadNav(){
       </ol>
     </div>
 
-    <div className='mx-auto justify-around p-4 flex-wrap align-middle bg-color1 hidden lg:flex'> 
+    <div className='mx-auto justify-around p-4 flex-wrap align-middle bg-color1 hidden lg:flex shadow-lg'> 
       {/* logo in big screen */}
       <div className='w-40 hidden lg:flex h-20 bg-[url("/pics/logo.png")] bg-contain'></div>
       {/* navi buttons for large screens */}
       <ol className='hidden lg:flex w-11/12 justify-between lg:w-4/6 flex-wrap lg:flex-nowrap font-bold'>
         <Link href={'/profile/homePage'} className={clsx(
-          'text-color3 w-1/6 flex items-center justify-center hover:bg-color3 hover:text-color4 rounded-lg',
+          'text-color3 p-5 flex items-center justify-center hover:bg-color3 hover:text-color4 rounded-lg',
           {
             'text-yellow-500':pathname === '/profile/homePage'
           }
@@ -52,7 +54,7 @@ export default function HeadNav(){
           home page
         </Link>
         <Link href={'/profile/aboutMe'} className={clsx(
-          'text-color3 w-1/6 flex items-center justify-center hover:bg-color3 hover:text-color4 rounded-lg',
+          'text-color3 p-5 flex items-center justify-center hover:bg-color3 hover:text-color4 rounded-lg',
           {
             'text-yellow-500':pathname === '/profile/aboutMe'
           }
@@ -60,7 +62,7 @@ export default function HeadNav(){
           <span className="material-symbols-outlined mr-4">person</span>about me
         </Link>
         <Link href={'/profile/skills'} className={clsx(
-          'text-color3 w-1/6 flex items-center justify-center hover:bg-color3 hover:text-color4 rounded-lg',
+          'text-color3 p-5 flex items-center justify-center hover:bg-color3 hover:text-color4 rounded-lg',
           {
             'text-yellow-500':pathname === '/profile/skills'
           }
@@ -68,7 +70,7 @@ export default function HeadNav(){
           <span className="material-symbols-outlined mr-4">laptop_windows</span>skills
         </Link>
         <Link href={'/profile/contactMe'} className={clsx(
-          'text-color3 w-1/6 flex items-center justify-center hover:bg-color3 hover:text-color4 rounded-lg',
+          'text-color3 p-5 flex items-center justify-center hover:bg-color3 hover:text-color4 rounded-lg',
           {
             'text-yellow-500':pathname === '/profile/contactMe'
           }

@@ -1,4 +1,10 @@
 import type { Config } from "tailwindcss";
+import { PluginAPI } from "tailwindcss/types/config";
+
+const plugin = require('tailwindcss/plugin')
+
+const screenKeys = Array.from({length: 20}, (_, i) => i*5)
+const screenSizes = screenKeys.reduce((v, key) => Object.assign(v, {[key]: key}), {});
 
 const config: Config = {
   content: [
@@ -17,10 +23,29 @@ const config: Config = {
         'color1': '#ededed',
         'color2': '#d9d9d9',
         'color3': '#555555',
-        'color4': '#fafafa',
+        'color4': '#eaf7ff',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({matchUtilities, theme}:PluginAPI) {
+      matchUtilities(
+        {
+          'w-screen': (width:String) => ({
+            width: `${width}vw`
+          })
+        },
+        { values: Object.assign(screenSizes, theme('screenSize', {})) }
+      ),
+      matchUtilities(
+        {
+          'h-screen': (height:String) => ({
+            height: `${height}vh`
+          })
+        },
+        { values: Object.assign(screenSizes, theme('screenSize', {})) }
+      )
+    })
+  ],
 };
 export default config;
