@@ -28,6 +28,6 @@ export default function Typing(props:{string1:string,string2:string}={string1:'s
   },[currentType])
 
   return (<>
-    <div>{text}<span>|</span></div>
+    <div>{text}<span className="text-black my_spark">|</span></div>
   </>)
 }
