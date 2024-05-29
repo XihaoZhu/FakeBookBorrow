@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import HeadNav from "../ui/headNav";
+import HeadNav from "@/app/ui/headNav";
 
 export const metadata: Metadata = {
   title: 'homePage',
