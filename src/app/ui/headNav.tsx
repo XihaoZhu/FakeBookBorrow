@@ -13,10 +13,10 @@ export default function HeadNav(){
 
 
     <div className={clsx('mx-auto flex justify-around p-4 flex-wrap align-middle bg-color1 lg:hidden shadow-md',{
-      'hidden':pathname !== '/profile/homePage'
+      // 'hidden':pathname !== '/profile/homePage'
     })}>
       {/* logo when in small and middle screen, take a single row */}
-      <div className='w-32 mb-4 h-16 bg-[url("/pics/logo.png")] bg-contain'></div>
+      <Link href={'/profile/homePage'} className='w-32 mb-4 h-16 bg-[url("/pics/logo.png")] bg-contain'></Link>
       {/* navi buttons for small and middle screen */}
       <ol className='flex w-11/12 justify-between lg:w-4/6 flex-wrap font-bold'>
         {/* <li className=
@@ -39,7 +39,7 @@ export default function HeadNav(){
       </ol>
     </div>
 
-    <div className='mx-auto justify-around p-4 flex-wrap align-middle bg-color1 hidden lg:flex shadow-lg'> 
+    <div className='mx-auto justify-around p-4 flex-wrap align-middle bg-color1 hidden lg:flex'> 
       {/* logo in big screen */}
       <div className='w-40 hidden lg:flex h-20 bg-[url("/pics/logo.png")] bg-contain'></div>
       {/* navi buttons for large screens */}
