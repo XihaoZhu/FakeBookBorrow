@@ -42,7 +42,7 @@ export default function ContactMe() {
 
 
       {/* right side form*/}
-      <div className="bg-gradient-to-r from-[#97b6d3] to-color4 col-span-2 xl:col-span-1 row-span-2 rounded-3xl border-l-4 border-l-[#9baec7]">
+      <div className="bg-gradient-to-r from-[#97b6d3] via-70% via-color4 to-color4 col-span-2 xl:col-span-1 row-span-2 rounded-3xl border-l-4 border-l-[#9baec7]">
         <form onSubmit={handleSubmit} method="post" className="flex flex-col justify-center h-full w-full pl-2 lg:pl-10 py-10">
           <input type="text" name="name" id="name" required placeholder="Name" autoComplete="off" value={formValue.name} onChange={(e)=>handleChange(e)}
           className="w-4/5 lg:w-2/3 px-2 rounded-full m-2 bg-color4"/>
