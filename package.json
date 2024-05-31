@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "ajax": "^0.0.4",
+    "axios": "^1.7.2",
     "clsx": "^2.1.1",
     "next": "14.2.3",
     "nodemailer": "^6.9.13",

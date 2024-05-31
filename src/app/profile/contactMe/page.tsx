@@ -11,15 +11,14 @@ export default function ContactMe() {
     
     e.preventDefault()
 
-    fetch('/api/mail',{
+    const formData = new FormData(e.target)
+    
+    setFormValue({name:'',email:'',message:''})
+
+    await fetch('/api/mail',{
       method:'POST',
+      body:formData,
     })
-
-    
-    //  setFormValue({name:'',email:'',message:''})
-
-    
-    
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>){
