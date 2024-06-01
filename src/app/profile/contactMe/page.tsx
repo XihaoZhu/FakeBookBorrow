@@ -60,11 +60,11 @@ export default function ContactMe() {
       {/* left down side, dismiss when small screen*/}
       <div className="col-span-1 flex-col justify-center text-left leading-[2vw] hidden xl:flex">
           <div>
-            Of course the right part is functional.<br/>
+            The right part should be functional.(At least it is when I tested it)<br/>
             But how it works? It actually sends me an email with my own account.<br/>
             So even I have asked for your email address there, after you leave me a message.<br/>
             please still send me something with the email adress you left after.<br/>
-            (For security reason, it is still possible it&apos;s not working as I use my normal Gmail account.)
+            (For security reason, it may not functional after time as I use my normal Gmail account.)
           </div>
       </div>
     </div>
