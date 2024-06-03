@@ -27,7 +27,7 @@ export default function ContactMe() {
 
   return (<>
     {/* biggest container in this page */}
-    <div className="w-full h-full py-20 lg:ox-40 px-5 xl:px-60 grid-cols-2 grid-rows-2 gap-5 grid">
+    <div className="w-full h-full lg:ox-40 px-5 xl:px-60 grid-cols-2 grid-rows-2 gap-5 grid">
       {/* left upper side, dismiss when small screen*/}
       <div className="col-span-1 justify-around flex-col hidden xl:flex">
           <div className="text-3xl">

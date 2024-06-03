@@ -31,7 +31,7 @@ export default function HomePage() {
 
 
     {/* for mobile screen */}
-    <div className="w-full h-full flex-col lg:hidden pt-10 text-center">
+    <div className="w-full h-full flex-col lg:hidden text-center">
     <Image src="/pics/nickPolkaDot.png" width={0} height={0} sizes="12rem" className="w-48 h-48 rounded-full flex-none mx-auto" alt="my big head"/>
     <div className="text-4xl font-semibold text-center my-10">Hello, <br />I&apos;m Nick</div>
     <div className="mx-auto">

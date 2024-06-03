@@ -19,7 +19,7 @@ const publickProp = "w-10 md:w-12 lg:w-16 xl:w-20 transition-all"
 
 export function IconArray ({show}:{show:string[]}) {
 
-  return (<div  className="flex space-x-5 spacey3 justify-center transition-all ease-in-out flex-wrap">
+  return (<div  className="flex space-x-5 justify-center transition-all ease-in-out flex-wrap flex-initial bg-yellow-500 mb-5">
     <Image src={jslogo} alt="JS icon" className={clsx(publickProp,
       {"opacity-20":show.indexOf('JS')==-1,
         "scale-120":show.indexOf('JS')!=-1

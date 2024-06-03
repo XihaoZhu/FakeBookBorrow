@@ -7,9 +7,9 @@ export const metadata: Metadata = {
 };
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="h-screen w-screen">
+    <div className="h-dvh">
       <HeadNav/>
-      <div className="bg-color4 w-screen h-[calc(100%-12.5rem)] lg:h-[calc(100%-7rem)]">{children}</div>
+      <div className="w-screen h-[calc(100%-12.5rem)] lg:h-[calc(100%-7rem)] py-10">{children}</div>
     </div>
   );
 }
