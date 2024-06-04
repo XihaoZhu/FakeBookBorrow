@@ -11,13 +11,13 @@ export default function Typing(props:{string1:string,string2:string}={string1:'s
 
   const type = async () => {
     for (let i = 0; i < currentType.length; i++) {
-      await delay(Math.random()*500+100); 
       setText(currentType.slice(0, i + 1));
+      await delay(Math.random()*500+100); 
     }
     await delay(300)
     for (let i = currentType.length; i > 0; i--) {
-      await delay(Math.random()*500+100);
       setText(currentType.slice(0, i - 1));
+      await delay(Math.random()*500+100);
     }
     setCurrentType(currentType === string1 ? string2 : string1);
   };
