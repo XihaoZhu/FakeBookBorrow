@@ -39,7 +39,7 @@ export default function Skills() {
       <span className="material-symbols-outlined absolute top-[55%] right-0 translate-x-[100%] text-4xl md:text-5xl cursor-pointer z-10 text-orange-500" onClick={right}>arrow_circle_right</span>
 
       {/* the largest container, where the overflow hidden will be assigned */}
-      <div className="flex-1 w-full overflow-hidden overflow-y-visible">
+      <div className="flex-1 w-full overflow-hidden">
 
         {/* the moving part, which is 300% width of its father element */}
         <div  className={clsx("w-[300%] h-full flex transition-all duration-500",{
@@ -57,7 +57,7 @@ export default function Skills() {
                 </div>
               </div>
               {/* long description for large screen */}
-              <div className="w-0 lg:w-1/2 hidden p-10 text-left lg:flex lg:flex-col lg:justify-center leading-loose font-semibold italic">
+              <div className="w-0 lg:w-1/2 hidden p-10 text-left lg:flex lg:flex-col leading-loose font-semibold italic overflow-y-visible overflow-auto">
                 <div>
                   The project you&apos;re viewing now is Nick&apos;s third project and also the first full stack project. <br />
                   It&apos;s the first time he uses typescript instead of Javascript in a project, although he learnt TS before he built his second project. 
