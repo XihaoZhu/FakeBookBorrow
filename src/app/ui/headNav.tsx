@@ -75,7 +75,7 @@ export default function HeadNav(){
             'text-yellow-500':pathname === '/profile/contactMe'
           }
         )}>
-          <span className="material-symbols-outlined mr-4">mail</span>contanct me
+          <span className="material-symbols-outlined mr-4">mail</span>contact me
         </Link>
       </ol>
     </div>

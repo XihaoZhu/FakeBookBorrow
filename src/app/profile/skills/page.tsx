@@ -4,6 +4,7 @@ import Image from "next/image";
 import {IconArray} from "@/app/ui/icons"
 import { useEffect, useState } from "react";
 import clsx from "clsx";
+import Link from "next/link";
 
 export default function Skills() {
   const shows=[['Git','Html','Nodejs','TS','CSS','Tailwind','PostgreSQL'],
@@ -35,8 +36,12 @@ export default function Skills() {
       </div>
 
       {/* the two arrows */}
-      <span className="material-symbols-outlined absolute top-[55%] left-0 -translate-x-[100%] text-4xl md:text-5xl cursor-pointer z-10 text-orange-500" onClick={left}>arrow_circle_left</span>
-      <span className="material-symbols-outlined absolute top-[55%] right-0 translate-x-[100%] text-4xl md:text-5xl cursor-pointer z-10 text-orange-500" onClick={right}>arrow_circle_right</span>
+      <span className={clsx("material-symbols-outlined absolute top-[55%] left-0 -translate-x-[100%] text-4xl md:text-5xl cursor-pointer z-10 text-orange-500 transition-all duration-300",{
+        "hidden":project==0,
+      })} onClick={left}>arrow_circle_left</span>
+      <span className={clsx("material-symbols-outlined absolute top-[55%] right-0 translate-x-[100%] text-4xl md:text-5xl cursor-pointer z-10 text-orange-500 transition-all duration-300",{
+        "hidden":project==2,
+      })} onClick={right}>arrow_circle_right</span>
 
       {/* the largest container, where the overflow hidden will be assigned */}
       <div className="flex-1 w-full overflow-hidden">
@@ -48,7 +53,7 @@ export default function Skills() {
         })}>
           {/* three repeating parts */}
             {/* first project */}
-            <div className="w-1/3 h-full flex cursor-pointer">
+            <Link className="w-1/3 h-full flex cursor-pointer" href="/bookSystem" target="_blank">
               <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-5">
                 <Image src={"/pics/react_project.png"} alt="project pic" sizes="auto" width={0} height={0} className="w-full rounded-lg"/>
                 {/* concise description for small screen */}
@@ -59,19 +64,16 @@ export default function Skills() {
               {/* long description for large screen */}
               <div className="w-0 lg:w-1/2 hidden p-10 text-left lg:flex lg:flex-col leading-loose font-semibold italic overflow-y-visible overflow-auto">
                 <div>
-                  The project you&apos;re viewing now is Nick&apos;s third project and also the first full stack project. <br />
-                  It&apos;s the first time he uses typescript instead of Javascript in a project, although he learnt TS before he built his second project. 
-                  <br /><br />
-                  The whole project is built in structure Next.Js and deployed on Vercel. All basic CSS is implemented with Tailwind. Nick also made this project mobile adapted, feel free to visit this website on your mobile devices. <br /><br />
-                  A book borrow system based on PostgreSQL is integred as a token for back-end skill, click to get accesee. <br />
-                  <br />
-                  (All three Nick&apos;s projects are designed and made on his own, no any templates were used.
-                  He also made something during learning as practice. But he thinks projects made following instructions are not sincere to show the skills, even   they for sure can look better.)
+                The project you&apos;re viewing now is Nick&apos;s third project and his first full-stack project.<br/>
+                It&apos;s the first time he&apos;s used TypeScript instead of JavaScript, although he learned TS before building his second project.<br/><br/>
+                The entire project is built using Next.js and deployed on Vercel. All basic CSS is implemented with Tailwind. Nick also made this project mobile-friendly, so feel free to visit this website on your mobile devices.<br/><br/>
+                A book borrowing system based on PostgreSQL is integrated as a demonstration of back-end skills—click to access it.<br/><br/>
+                (All three of Nick&apos;s projects are designed and built entirely by him without using any templates. He also created other projects as practice while learning. However, he believes projects made by following instructions aren&apos;t a sincere representation of his skills, even if they may look better.)<br/>
                 </div>              
               </div>
-            </div>
+            </Link>
             {/* second project*/}
-            <div className="w-1/3 h-full flex  cursor-pointer">
+            <Link className="w-1/3 h-full flex  cursor-pointer" href="https://main--nick-in-sea.netlify.app/" target="_blank">
               <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-5">
                 <Image src={"/pics/vue_project.png"} alt="project pic" sizes="auto" width={0} height={0} className="w-full rounded-lg"/>
                 {/* concise description for small screen */}
@@ -87,9 +89,9 @@ export default function Skills() {
                 Nick used blender to made the endless animation. 
                 </div>              
               </div>
-            </div>
+            </Link>
             {/* third project*/}
-            <div className="w-1/3 h-full flex  cursor-pointer">
+            <Link className="w-1/3 h-full flex  cursor-pointer" href="https://know-nick.netlify.app/" target="_blank">
               <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-5">
                 <Image src={"/pics/react_project.png"} alt="project pic" sizes="auto" width={0} height={0} className="w-full rounded-lg"/>
                 {/* concise description for small screen */}
@@ -106,7 +108,7 @@ export default function Skills() {
                 (BTW Nick has learnt a lot more things after this project was finished, while the notes page in this project is not updated.)
                 </div>              
               </div>
-            </div>
+            </Link>
 
         </div>
 
