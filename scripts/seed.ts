@@ -7,6 +7,7 @@ const {
   comments,
   histories,
 } = require('../src/app/lib/placeholder-data');
+
 const bcrypt = require('bcrypt');
 
 async function seedAccounts(client:VercelClientBase) {
@@ -157,6 +158,7 @@ async function seedHistories(client:VercelClientBase) {
 }
 
 async function main() {
+  
   const client = await db.connect();
 
   await seedAccounts(client);
