@@ -18,7 +18,7 @@ export default function Login() {
         <div className="bg-gray-200/20 w-full lg:w-1/2 lg:h-full flex flex-col justify-center">
           {/* text part */}
           <div className="lg:text-xl p-12">
-            The book borrow system part is to showcase skills for back end development. It&apos;s based on Nexj.Js, written in Javascript and with PostgreSQL.
+            The book borrow system part is to showcase skills for back end development. It&apos;s based on Nexj.Js, written in TypeScript and with PostgreSQL.
             <br /><br />
             Before we start, there are some things you need to know: <br /><br />
             1. The idea is making believe you are renting book from Nick (but of course he has no book for you) <br /><br />

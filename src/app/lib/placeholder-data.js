@@ -1,14 +1,13 @@
-import { describe } from "node:test";
 
-const accounts:[{[key:string]:string|number}] = [
+const accounts = [
   {
     name: 'Nick_owner_of_here',
     password: '1598753aswq',
-    borrowing:'',
+    borrowing: 0,
   },
 ];
 
-const books:[{[key:string]:string|number}] = [
+const books = [
   {
     name:'First',
     author:"Nick_Zhu",
@@ -18,14 +17,14 @@ const books:[{[key:string]:string|number}] = [
   }
 ]
 
-const comments : [{[key:string]:string|number}] = [
+const comments = [
   {
     id: 1,
     content:"A very lovely love story ! It's about Nick finds his job after hard working."
   }
 ]
 
-const histories : [{[key:string]:string|number}] = [
+const histories = [
   {
     id:1,
     person:'Nick_owner_of_here',

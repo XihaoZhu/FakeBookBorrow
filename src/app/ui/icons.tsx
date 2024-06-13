@@ -17,12 +17,12 @@ import tailwindlogo from "@/../../public/icons/tailwind-svgrepo-com.svg"
 import postgresqllogo from "@/../../public/icons/postgresql-icon.svg"
 import clsx from "clsx"
 
-const publickProp = "w-10 md:w-12 lg:w-16 xl:w-20 transition-all"
+const publickProp = "w-10 md:w-12 lg:w-14 xl:w-16 transition-all"
 
 
 export function IconArray ({show}:{show:string[]}) {
 
-  return (<div  className="flex space-x-1 justify-center transition-all ease-in-out flex-wrap flex-initial mb-5">
+  return (<div  className="flex space-x-2 justify-bwtween transition-all ease-in-out flex-wrap flex-initial mb-5">
     <Image src={jslogo} alt="JS icon" className={clsx(publickProp,
       {"opacity-20":show.indexOf('JS')==-1,
         "scale-[120%]":show.indexOf('JS')!=-1
@@ -53,11 +53,6 @@ export function IconArray ({show}:{show:string[]}) {
         "scale-[120%]":show.indexOf('CSS')!=-1
       }
     )}/>
-    <Image src={tailwindlogo} alt="Tailwind icon" className={clsx(publickProp,
-      {"opacity-20":show.indexOf('Tailwind')==-1,
-        "scale-[120%]":show.indexOf('Tailwind')!=-1
-      }
-    )}/>
     <Image src={nodejslogo} alt="NodeJs icon" className={clsx(publickProp,
       {"opacity-20":show.indexOf('Nodejs')==-1,
         "scale-[120%]":show.indexOf('Nodejs')!=-1
@@ -66,6 +61,11 @@ export function IconArray ({show}:{show:string[]}) {
     <Image src={pslogo} alt="PS icon" className={clsx(publickProp,
       {"opacity-20":show.indexOf('PS')==-1,
         "scale-[120%]":show.indexOf('PS')!=-1
+        }
+        )}/>
+    <Image src={tailwindlogo} alt="Tailwind icon" className={clsx(publickProp,
+      {"opacity-20":show.indexOf('Tailwind')==-1,
+        "scale-[120%]":show.indexOf('Tailwind')!=-1
       }
     )}/>
     <Image src={phplogo} alt="PHP icon" className={clsx(publickProp,

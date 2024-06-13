@@ -1,4 +1,3 @@
-import { VercelClientBase } from "@vercel/postgres";
 
 const { db } = require('@vercel/postgres');
 const {
@@ -8,16 +7,14 @@ const {
   histories,
 } = require('../src/app/lib/placeholder-data');
 
-const bcrypt = require('bcrypt');
-
-async function seedAccounts(client:VercelClientBase) {
+async function seedAccounts(client) {
   try {
     // Create the "accounts" table if it doesn't exist
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS users (
-        name VARCHAR(255) NOT NULL,
+        name VARCHAR(255) NOT NULL UNIQUE,
         password TEXT NOT NULL,
-        borrowing TEXT DEFAULT NULL
+        borrowing INTEGER DEFAULT 0
       );
     `;
 
@@ -25,11 +22,10 @@ async function seedAccounts(client:VercelClientBase) {
 
     // Insert data into the "accounts" table
     const insertedAccounts = await Promise.all(
-      accounts.map(async (account:{[key:string]:string|number}) => {
-        const hashedPassword = await bcrypt.hash(account.password, 10);
+      accounts.map(async (account) => {
         return client.sql`
         INSERT INTO users (name, password, borrowing)
-        VALUES (${account.name}, ${hashedPassword}, ${account.borrowing})
+        VALUES (${account.name}, ${account.password}, ${account.borrowing})
         ON CONFLICT (name) DO NOTHING;
       `;
       }),
@@ -47,14 +43,14 @@ async function seedAccounts(client:VercelClientBase) {
   }
 }
 
-async function seedBooks(client:VercelClientBase) {
+async function seedBooks(client) {
   try {
     // Create the "books" table if it doesn't exist
     const createTable = await client.sql`
     CREATE TABLE IF NOT EXISTS books (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-    author TEXT NOT NULL
+    name TEXT NOT NULL UNIQUE,
+    author TEXT NOT NULL,
     thumbs INTEGER DEFAULT 0,
     time DATE NOT NULL,
     cata TEXT DEFAULT NULL,
@@ -68,15 +64,15 @@ async function seedBooks(client:VercelClientBase) {
     // Insert data into the "invoices" table
     const insertedBooks = await Promise.all(
       books.map(
-        (book:{[key:string]:string|number}) => client.sql`
+        (book) => client.sql`
         INSERT INTO books ( name, author, time, cata, description)
-        VALUES (${book.name}, ${book.author}}, ${book.time}, ${book.cata}, ${book.description})
+        VALUES (${book.name}, ${book.author}, ${book.time}, ${book.cata}, ${book.description})
         ON CONFLICT (name) DO NOTHING;
       `,
       ),
     );
 
-    console.log(`Seeded ${insertedBooks.length} invoices`);
+    console.log(`Seeded ${insertedBooks.length} books`);
 
     return {
       createTable,
@@ -88,13 +84,13 @@ async function seedBooks(client:VercelClientBase) {
   }
 }
 
-async function seedComments(client:VercelClientBase) {
+async function seedComments(client) {
   try {
     // Create the "Comments" table if it doesn't exist
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS comments (
         id INTEGER NOT NULL,
-        content TEXT NOT NULL,
+        content TEXT NOT NULL
       );
     `;
 
@@ -103,14 +99,14 @@ async function seedComments(client:VercelClientBase) {
     // Insert data into the "comments" table
     const insertedComments = await Promise.all(
       comments.map(
-        (comment:{[key:string]:string}) => client.sql`
+        (comment) => client.sql`
         INSERT INTO comments (id, content)
-        VALUES (${comment.id}, ${comment.content})
+        VALUES (${comment.id}, ${comment.content});
       `,
       ),
     );
 
-    console.log(`Seeded ${insertedComments.length} customers`);
+    console.log(`Seeded ${insertedComments.length} comments`);
 
     return {
       createTable,
@@ -122,14 +118,14 @@ async function seedComments(client:VercelClientBase) {
   }
 }
 
-async function seedHistories(client:VercelClientBase) {
+async function seedHistories(client) {
   try {
     // Create the "histories" table if it doesn't exist
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS histories (
         id INTEGER NOT NULL,
         person TEXT NOT NULL,
-        returned DEFAULT 0
+        returned INTEGER DEFAULT 0
       );
     `;
 
@@ -138,14 +134,14 @@ async function seedHistories(client:VercelClientBase) {
     // Insert data into the "revenue" table
     const insertedHistories = await Promise.all(
       histories.map(
-        (his:{[key:string]:string|number}) => client.sql`
+        (his) => client.sql`
         INSERT INTO histories (id, person)
         VALUES (${his.id}, ${his.person})
       `,
       ),
     );
 
-    console.log(`Seeded ${insertedHistories.length} revenue`);
+    console.log(`Seeded ${insertedHistories.length} histories`);
 
     return {
       createTable,

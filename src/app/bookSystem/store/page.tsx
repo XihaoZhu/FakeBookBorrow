@@ -14,12 +14,12 @@ export default function BookStore() {
       <div className=" hidden justify-center space-x-5 lg:flex">
         
         {/* list part */}
-        <div className="lg:w-[20rem] xl:w-[30rem] h-[50rem]">
+        <div className="lg:w-[20rem] xl:w-[30rem] h-[45rem]">
           <BookList></BookList>
         </div>
         
         {/* book part */}
-        <div className="lg:w-[40rem] xl:w-[60rem] h-[50rem] space-y-5">
+        <div className="lg:w-[40rem] xl:w-[60rem] h-[45rem] space-y-5">
 
           {/* book information */}
           <div className="w-full h-3/5">
