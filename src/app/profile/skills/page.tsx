@@ -55,11 +55,11 @@ export default function Skills() {
             {/* first project */}
             <Link className="w-1/3 h-full flex cursor-pointer" href="/bookSystem" target="_blank">
               <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-5">
-                <Image src={"/pics/react_project.png"} alt="project pic" sizes="auto" width={0} height={0} className="w-full rounded-lg"/>
+                <Image src={"/pics/react_project.png"} alt="project pic" sizes="auto" width={2} height={1} className="w-full rounded-lg"/>
                 {/* concise description for small screen */}
                 <div className="block lg:hidden">
                   Current project: a Full stack projects. Click to access to the build in book borrow system.
-                </div>
+              </div>
               </div>
               {/* long description for large screen */}
               <div className="w-0 lg:w-1/2 hidden p-10 text-left lg:flex lg:flex-col leading-loose font-semibold italic overflow-y-visible overflow-auto">
@@ -75,7 +75,7 @@ export default function Skills() {
             {/* second project*/}
             <Link className="w-1/3 h-full flex  cursor-pointer" href="https://main--nick-in-sea.netlify.app/" target="_blank">
               <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-5">
-                <Image src={"/pics/vue_project.png"} alt="project pic" sizes="auto" width={0} height={0} className="w-full rounded-lg"/>
+                <Image src={"/pics/vue_project.png"} alt="project pic" sizes="auto" width={2} height={1} className="w-full rounded-lg"/>
                 {/* concise description for small screen */}
                 <div className="block lg:hidden">
                   Previous project: Nick in sea (click to view)
@@ -93,7 +93,7 @@ export default function Skills() {
             {/* third project*/}
             <Link className="w-1/3 h-full flex  cursor-pointer" href="https://know-nick.netlify.app/" target="_blank">
               <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-5">
-                <Image src={"/pics/react_project.png"} alt="project pic" sizes="auto" width={0} height={0} className="w-full rounded-lg"/>
+                <Image src={"/pics/react_project.png"} alt="project pic" sizes="auto" width={2} height={1} className="w-full rounded-lg"/>
                 {/* concise description for small screen */}
                 <div className="block lg:hidden">
                   Previous project: Introduce to Nick (click to view)
