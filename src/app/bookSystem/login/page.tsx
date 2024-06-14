@@ -2,11 +2,12 @@
 import Image from "next/image"
 import clsx from "clsx"
 import { useState } from "react"
+import { fetchLogOrRegister } from "@/app/lib/data"
 
 export default function Login() {
 
   const [visible,setVisible]=useState(false)
-  
+
   return (<>
     {/* screen size element */}
     <div className="w-screen h-screen flex justify-center">

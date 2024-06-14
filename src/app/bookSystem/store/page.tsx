@@ -1,9 +1,30 @@
+"use client"
 
 import BookList from "@/app/ui/bookList"
 import BookInfo from "@/app/ui/bookInfo"
 import BookComments from "@/app/ui/bookComents"
+import { fetchBooks,fetchComments } from "@/app/lib/data"
+import { useEffect,useState } from "react"
+import { Book } from "@/app/lib/definitions"
 
 export default function BookStore() {
+
+  const [page,setPge] = useState(0)
+  const [order,setOrder] = useState<'thumbs'|'time'>('thumbs')
+  const [books,setBooks] = useState<Book[]>([])
+
+  useEffect(()=> {
+    const fetchDatabooks = async ()=>{
+      const fetchedBooks = await fetchBooks(page, order);
+      setBooks(fetchedBooks);
+    }
+    fetchDatabooks()
+  },[page,order])
+
+  useEffect(() => {
+  console.log(books);
+}, [books]);
+
   return (<>
     {/* screen size container */}
     <div className="w-screen h-screen  flex flex-col justify-center">
