@@ -10,7 +10,7 @@ export default function BookList({bookList,setChooseCata,chooseCata,bookId,setBo
   const Cata=["Love story","History","Time travel","War","Ancient"]
 
 
-  function clickBook(bookId:string):void{
+  function clickBook(bookId:number):void{
     setBookId(bookId)
   }
 

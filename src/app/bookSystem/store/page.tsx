@@ -10,7 +10,7 @@ import { QueryResultRow } from "@vercel/postgres"
 
 export default function BookStore() {
 
-  const [page,setPge] = useState(1)
+  const [page,setPage] = useState(1)
   const [books,setBooks] = useState<QueryResultRow>([])
   const [chooseCata,setChooseCata]=useState('all')
   const [chooseOrder,setChooseOrder]=useState<'time'|'thumbs'>('thumbs')
@@ -39,7 +39,7 @@ export default function BookStore() {
         
         {/* list part */}
         <div className="lg:w-[20rem] xl:w-[30rem] h-[45rem]">
-          <BookList bookList={books}  setChooseCata={setChooseCata} chooseCata={chooseCata} setBookId={setBookId} bookId={bookId} setChooseOrder={setChooseOrder} chooseOrder={chooseOrder}></BookList>
+          <BookList bookList={books}  setChooseCata={setChooseCata} chooseCata={chooseCata} setBookId={setBookId} bookId={bookId} setChooseOrder={setChooseOrder} chooseOrder={chooseOrder} setPge={setPage}></BookList>
         </div>
         
         {/* book part */}
@@ -47,7 +47,7 @@ export default function BookStore() {
 
           {/* book information */}
           <div className="w-full h-3/5">
-            <BookInfo></BookInfo>
+            <BookInfo bookList={books} bookId={bookId}></BookInfo>
           </div>
           {/* book comments */}
           <div className="w-full h-[calc(40%-1.25rem)]">

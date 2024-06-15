@@ -1,10 +1,19 @@
-
+"use client"
 import Image from "next/image"
-import { describe, mock } from "node:test"
+import { Book } from "../lib/definitions"
+import { useEffect, useState } from "react"
 
-export default function BookInfo(){
+export default function BookInfo({bookList,bookId}:any){
 
-  const mockInfo={book:"A love Story",cata:"love story",author:"nick",donation:"nick",time:"2000-12-26",status:"avaliable",describe:'a boring love story'}
+  const [bookInfo,setBookInfo] = useState<any>(bookList.filter((item:any)=>item.id==bookId)[0])
+
+  useEffect(()=>{
+    setBookInfo(bookList.filter((item:any)=>item.id==bookId)[0])
+  },[bookId,bookList])
+
+  useEffect(()=>{
+    console.log(bookInfo)
+  },[bookInfo])
 
 
   return (<>
@@ -21,18 +30,17 @@ export default function BookInfo(){
     {/* book info */}
     <div className="w-1/2 h-full p-2 relative">
       <ul className="bg-blue-200/50 w-full h-full rounded-xl flex flex-col space-y-5 px-5 py-10">
-        <li>Book Name : {mockInfo.book}</li>
-        <li>Author : {mockInfo.author}</li>
-        <li>Donamtion time : {mockInfo.time}</li>
-        <li>Donation from : {mockInfo.donation}</li>
-        <li className="max-h-36 overflow-auto">Description : {mockInfo.describe}</li>
+        <li>Book Name : {bookInfo.name}</li>
+        <li>Author : {bookInfo.author}</li>
+        <li>Published: {bookInfo.time}</li>
+        <li className="max-h-36 overflow-auto">Description : {bookInfo.description}</li>
       </ul>
-      {mockInfo.status !== 'avaliable' && (
+      {bookInfo.status !== 0 && (
         <button className="absolute bottom-10 left-10 bg-gray-100 py-2 px-4 rounded-lg border-solid border-2 border-white shadow-md shadow-orange-800 hover:scale-110">
-          Unavailable: borrowed by {mockInfo.status}
+          Unavailable: borrowed by {bookInfo.status}
         </button>
       )}
-      {mockInfo.status === 'avaliable' && (
+      {bookInfo.status === 0 && (
         <button className="absolute bottom-10 right-10 bg-yellow-200 py-2 px-4 rounded-lg border-solid border-2 border-white shadow-md shadow-orange-600 hover:scale-110">
           BORROW !
         </button>
