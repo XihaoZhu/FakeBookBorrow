@@ -4,26 +4,29 @@ import BookList from "@/app/ui/bookList"
 import BookInfo from "@/app/ui/bookInfo"
 import BookComments from "@/app/ui/bookComents"
 import { fetchBooks,fetchComments } from "@/app/lib/data"
-import { useEffect,useState } from "react"
+import { use, useEffect,useState } from "react"
 import { Book } from "@/app/lib/definitions"
+import { QueryResultRow } from "@vercel/postgres"
 
 export default function BookStore() {
 
-  const [page,setPge] = useState(0)
-  const [order,setOrder] = useState<'thumbs'|'time'>('thumbs')
-  const [books,setBooks] = useState<Book[]>([])
+  const [page,setPge] = useState(1)
+  const [books,setBooks] = useState<QueryResultRow>([])
+  const [chooseCata,setChooseCata]=useState('all')
+  const [chooseOrder,setChooseOrder]=useState<'time'|'thumbs'>('thumbs')
+  const [bookId,setBookId]=useState('1')
 
   useEffect(()=> {
     const fetchDatabooks = async ()=>{
-      const fetchedBooks = await fetchBooks(page, order);
+      const fetchedBooks = await fetchBooks(page,chooseOrder,chooseCata);
       setBooks(fetchedBooks);
     }
     fetchDatabooks()
-  },[page,order])
+  },[page,chooseOrder,chooseCata])
 
-  useEffect(() => {
-  console.log(books);
-}, [books]);
+  useEffect(()=>{
+    console.log(books)
+  },[books])
 
   return (<>
     {/* screen size container */}
@@ -36,7 +39,7 @@ export default function BookStore() {
         
         {/* list part */}
         <div className="lg:w-[20rem] xl:w-[30rem] h-[45rem]">
-          <BookList></BookList>
+          <BookList bookList={books}  setChooseCata={setChooseCata} chooseCata={chooseCata} setBookId={setBookId} bookId={bookId} setChooseOrder={setChooseOrder} chooseOrder={chooseOrder}></BookList>
         </div>
         
         {/* book part */}

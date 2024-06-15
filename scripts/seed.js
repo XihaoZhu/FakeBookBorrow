@@ -65,8 +65,8 @@ async function seedBooks(client) {
     const insertedBooks = await Promise.all(
       books.map(
         (book) => client.sql`
-        INSERT INTO books ( name, author, time, cata, description)
-        VALUES (${book.name}, ${book.author}, ${book.time}, ${book.cata}, ${book.description})
+        INSERT INTO books ( name, author, time, cata, description, thumbs)
+        VALUES (${book.name}, ${book.author}, ${book.time}, ${book.cata}, ${book.description}, ${book.thumbs})
         ON CONFLICT (name) DO NOTHING;
       `,
       ),
@@ -171,3 +171,4 @@ main().catch((err) => {
     err,
   );
 });
+

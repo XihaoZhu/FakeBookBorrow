@@ -1,3 +1,5 @@
+"use server"
+
 import { sql } from '@vercel/postgres';
 import { unstable_noStore as noStore } from 'next/cache';
 
@@ -58,7 +60,7 @@ export async function fetchComments(id:number) {
 export async function fetchBooks(
   currentPage: number,
   order: 'thumbs'|'time',
-  cata: string='',
+  cata: string,
   ) {
   
   const ITEMS_PER_PAGE = 5;
@@ -69,26 +71,46 @@ export async function fetchBooks(
 
   try {
 
-    let query
-    if (!cata){
-       query = sql<Book>`
-        SELECT *
-        FROM books
-        WHERE cata = ${cata}
-        ORDER BY ${order} DESC
-        LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
-      `;
+    let books 
+
+    if (cata!='all'){
+      if (order !='thumbs'){
+        books = await sql`
+         SELECT *
+         FROM books
+         WHERE cata = ${cata}
+         ORDER BY time DESC
+         LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+       `;
+      }
+      else{
+        books = await sql`
+         SELECT *
+         FROM books
+         WHERE cata = ${cata}
+         ORDER BY thumbs DESC
+         LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+       `;
+      }
     }
     else {
-      query = sql<Book>`
-        SELECT *
-        FROM books
-        ORDER BY ${order} DESC
-        LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
-      `;
+      if (order!='thumbs'){
+        books = await sql`
+          SELECT *
+          FROM books
+          ORDER BY time DESC
+          LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+        `;
       }
-
-      const books = await query
+      else {
+        books = await sql`
+          SELECT *
+          FROM books
+          ORDER BY thumbs DESC
+          LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+        `;
+      }
+      }
 
     return books.rows;
   } catch (error) {

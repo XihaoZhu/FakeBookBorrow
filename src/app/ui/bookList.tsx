@@ -1,27 +1,17 @@
 "use client"
 
+import { format } from 'date-fns'
+import { QueryResultRow } from "@vercel/postgres"
 import clsx from "clsx"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-export default function BookList(){
+export default function BookList({bookList,setChooseCata,chooseCata,bookId,setBookId,chooseOrder,setChooseOrder}:any){
 
-  const mockList=[
-    {book:"book1",author:"author1",recommend:20,time:'2022-12-12',number:1},
-    {book:"book2",author:"author2",recommend:40,time:'2022-12-02',number:2},
-    {book:"book3",author:"author3",recommend:10,time:'2022-12-12',number:3},
-    {book:"book4",author:"author4",recommend:20,time:'2022-12-22',number:4},
-    {book:"book5",author:"author5",recommend:20,time:'2022-12-12',number:5},
-    {book:"book6",author:"author6",recommend:20,time:'2022-12-12',number:6},
-  ]
+  const Cata=["Love story","History","Time travel","War","Ancient"]
 
-  const mockCata=["Love story","History","Time travel","War","Acient"]
 
-  const [chooseCata,setChooseCata]=useState('all')
-  const [chooseOrder,setChooseOrder]=useState('hot')
-  const [bookName,setBookName]=useState('book1')
-
-  function clickBook(book:string):void{
-    setBookName(book)
+  function clickBook(bookId:string):void{
+    setBookId(bookId)
   }
 
 
@@ -34,8 +24,8 @@ export default function BookList(){
       <b>Order by:</b>
       <ul className="pl-10 space-y-5 cursor-pointer">
         <li className={clsx("px-2 text-center py-1 rounded-full",{
-          "border-dashed border-2 border-indigo-400":chooseOrder=='hot',
-        })} onClick={()=>setChooseOrder('hot')}>hot</li>
+          "border-dashed border-2 border-indigo-400":chooseOrder=='thumbs',
+        })} onClick={()=>setChooseOrder('thumbs')}>hot</li>
         <li className={clsx("px-2 text-center py-1 rounded-full",{
           "border-dashed border-2 border-indigo-400":chooseOrder=='time',
         })} onClick={()=>setChooseOrder('time')}>time</li>
@@ -47,7 +37,7 @@ export default function BookList(){
         <li className={clsx("px-2 text-center py-1 rounded-full",{
           "border-dashed border-2 border-indigo-400":chooseCata=='all',
         })} onClick={()=>setChooseCata('all')}>all</li>
-        {mockCata.map((item,index)=><li className={clsx("px-2 text-center py-1 rounded-full",{
+        {Cata.map((item,index)=><li className={clsx("px-2 text-center py-1 rounded-full",{
           "border-dashed border-2 border-indigo-400":chooseCata==item,
         })} key={index} onClick={()=>setChooseCata(item)}>{item}</li>)}
       </ul>
@@ -63,13 +53,13 @@ export default function BookList(){
             <div>author:nick</div>
             <div>time:2021-12-45</div>
           </li> */}
-          {mockList.map((item)=><li key={item.number} className={clsx("flex flex-col p-4 rounded-2xl break-all cursor-pointer",{
-            "bg-yellow-200/50 text-orange-600":bookName==item.book,
-            " bg-blue-200/50":bookName!=item.book,
-          })} onClick={()=>clickBook(item.book)}>
-            <div>{item.book}<span className="float-right"><span className="material-symbols-outlined translate-y-1">thumb_up</span>:{item.recommend}</span> </div>
+          {bookList.map((item:QueryResultRow)=><li key={item.id} className={clsx("flex flex-col p-4 rounded-2xl break-all cursor-pointer",{
+            "bg-yellow-200/50 text-orange-600":bookId==item.id,
+            " bg-blue-200/50":bookId!=item.id,
+          })} onClick={()=>clickBook(item.id)}>
+            <div>{item.name}<span className="float-right"><span className="material-symbols-outlined translate-y-1">thumb_up</span>:{item.thumbs}</span> </div>
             <div>author:{item.author}</div>
-            <div>time:{item.time}</div>
+            <div>time:{format(item.time, 'yyyy-MM-dd')}</div>
           </li>)}
         </ul>
         <div className="bg-blue-200/50 w-full absolute bottom-0">
