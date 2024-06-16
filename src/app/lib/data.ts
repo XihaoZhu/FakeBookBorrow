@@ -9,38 +9,67 @@ import {
   Comment,
   History,
 } from './definitions.ts';
+import exp from 'constants';
+import { error } from 'console';
 
+export async function fetchUsers() {
 
-export async function fetchLogOrRegister(para:{name:string,password:string}) {
+  noStore()
+
+  try {
+
+    const data = await sql`
+    SELECT name FROM users`
+
+    return data.rows
+  }catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch users name.');
+  }
+}
+  
+export async function fetchLogin(name:string,password:string) {
+  noStore()
+
+  try {
+
+    const data = await sql`
+    SELECT password FROM users WHERE name = ${name}`
+
+    if (data.rows[0].password==password){
+      return name
+    }
+    else {
+      return 'name occupied or password wrong'
+    }
+
+  }catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to login');
+  }
+}
+
+export async function fetchRegister(name:string,password:string) {
  
   noStore();
 
   try {
 
-    const data = await sql<Account>`
-      SELECT password
-      FROM invoices
-      WHERE name = ${para.name}
-      `;
+    await sql`
+      INSERT INTO users (name, password, borrowing)
+      VALUES (${name}, ${password}, 0)
+    `
 
-    if (data.rows.length==1){
-      return data.rows[0].password
-    }
-    else {
-      await sql`
-        INSERT INTO users (name, password, borrowing)
-        VALUES (${para.name}, ${para.password}, 0)
-        ON CONFLICT (name) DO NOTHING;
-      `
-      return para.name
-    }
+    return name
+    
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch or register.');
+    throw new Error('Failed to register.');
   }
 }
 
 export async function fetchComments(id:number) {
+  
   noStore();
 
   try {
@@ -48,7 +77,7 @@ export async function fetchComments(id:number) {
         FROM comments
         WHERE id = ${id}
         `;
-        return comments
+        return comments.rows
 
   } catch (error) {
     console.error('Database Error:', error);

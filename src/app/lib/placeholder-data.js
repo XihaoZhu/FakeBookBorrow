@@ -101,7 +101,129 @@ const books = [
 const comments = [
   {
     id: 1,
-    content:"A very lovely love story ! It's about Nick finds his job after hard working."
+    content:"A very lovely love story ! It's about Nick finds his job after hard working.",
+    account:'Nick_owner_of_here',
+    time:"2024-06-13"
+  },
+  {
+    id: 1,
+    content: "A compelling story about resilience and overcoming life's challenges.",
+    account: 'Nick_is_testing',
+    time: "2024-06-10"
+  },
+  {
+    id: 1,
+    content: "An inspiring tale of perseverance and relentless pursuit of goals.",
+    account: 'Nick_is_testing',
+    time: "2024-06-09"
+  },
+  {
+    id: 3,
+    content: "A heartwarming journey of growth and self-discovery.",
+    account: 'Nick_is_testing',
+    time: "2024-06-08"
+  },
+  {
+    id: 5,
+    content: "An adventurous quest filled with determination and courage.",
+    account: 'Nick_is_testing',
+    time: "2024-06-07"
+  },
+  {
+    id: 4,
+    content: "A touching narrative about the power of hard work and dedication.",
+    account: 'Nick_is_testing',
+    time: "2024-06-06"
+  },
+  {
+    id: 7,
+    content: "An emotional rollercoaster depicting the ups and downs of life.",
+    account: 'Nick_is_testing',
+    time: "2024-06-05"
+  },
+  {
+    id: 11,
+    content: "A motivating story of never giving up on dreams.",
+    account: 'Nick_is_testing',
+    time: "2024-06-04"
+  },
+  {
+    id: 10,
+    content: "A narrative of resilience and unwavering belief in oneself.",
+    account: 'Nick_is_testing',
+    time: "2024-06-03"
+  },
+  {
+    id: 9,
+    content: "A journey through challenges leading to personal growth.",
+    account: 'Nick_is_testing',
+    time: "2024-06-02"
+  },
+  {
+    id: 7,
+    content: "An inspiring story of overcoming obstacles with determination.",
+    account: 'Nick_is_testing',
+    time: "2024-06-01"
+  },
+  {
+    id: 3,
+    content: "A beautiful story about the importance of persistence.",
+    account: 'Nick_is_testing',
+    time: "2024-05-31"
+  },
+  {
+    id: 8,
+    content: "A tale of facing life's challenges head-on and emerging victorious.",
+    account: 'Nick_is_testing',
+    time: "2024-05-30"
+  },
+  {
+    id: 11,
+    content: "A moving narrative of dedication and the rewards of hard work.",
+    account: 'Nick_is_testing',
+    time: "2024-05-29"
+  },
+  {
+    id: 2,
+    content: "A testament to the power of belief and persistence.",
+    account: 'Nick_is_testing',
+    time: "2024-05-28"
+  },
+  {
+    id: 5,
+    content: "An uplifting story about commitment to achieving one's goals.",
+    account: 'Nick_is_testing',
+    time: "2024-05-27"
+  },
+  {
+    id: 3,
+    content: "A journey paved with hard work and determination leading to success.",
+    account: 'Nick_is_testing',
+    time: "2024-05-26"
+  },
+  {
+    id: 4,
+    content: "A narrative of unwavering dedication to one's dreams.",
+    account: 'Nick_is_testing',
+    time: "2024-05-25"
+  },
+  {
+    id: 5,
+    content: "An inspiring story of never giving up and achieving great things.",
+    account: 'Nick_is_testing',
+    time: "2024-05-24"
+  },
+  {
+    id: 1,
+    content: "A motivational tale of resilience and the pursuit of goals.",
+    account: 'Nick_is_testing',
+    time: "2024-05-23"
+  },
+  {
+    id: 4,
+    content: "An emotional journey depicting the power of hard work and belief.",
+    account: 'Nick_is_testing',
+    time: "2024-05-22"
   }
 ]
 

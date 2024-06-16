@@ -1,20 +1,17 @@
 "use client"
+
 import Image from "next/image"
 import { Book } from "../lib/definitions"
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
+import { format } from 'date-fns'
 
-export default function BookInfo({bookList,bookId}:any){
+export default function BookInfo({bookInfo}:any){
 
-  const [bookInfo,setBookInfo] = useState<any>(bookList.filter((item:any)=>item.id==bookId)[0])
+  const isBookInfoValid = bookInfo && bookInfo.name && bookInfo.author && bookInfo.time;
 
-  useEffect(()=>{
-    setBookInfo(bookList.filter((item:any)=>item.id==bookId)[0])
-  },[bookId,bookList])
-
-  useEffect(()=>{
-    console.log(bookInfo)
-  },[bookInfo])
-
+  if (!isBookInfoValid) {
+    return <div>Loading...</div>;
+  }
 
   return (<>
   {/* outest container */}
@@ -32,7 +29,7 @@ export default function BookInfo({bookList,bookId}:any){
       <ul className="bg-blue-200/50 w-full h-full rounded-xl flex flex-col space-y-5 px-5 py-10">
         <li>Book Name : {bookInfo.name}</li>
         <li>Author : {bookInfo.author}</li>
-        <li>Published: {bookInfo.time}</li>
+        <li>Published: {bookInfo?format(bookInfo.time, 'yyyy-MM-dd'):''}</li>
         <li className="max-h-36 overflow-auto">Description : {bookInfo.description}</li>
       </ul>
       {bookInfo.status !== 0 && (

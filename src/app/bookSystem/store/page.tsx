@@ -14,7 +14,9 @@ export default function BookStore() {
   const [books,setBooks] = useState<QueryResultRow>([])
   const [chooseCata,setChooseCata]=useState('all')
   const [chooseOrder,setChooseOrder]=useState<'time'|'thumbs'>('thumbs')
-  const [bookId,setBookId]=useState('1')
+  const [bookId,setBookId]=useState(1)
+  const [bookInfo,setBookInfo]=useState({})
+  const [comments,setComments]=useState({})
 
   useEffect(()=> {
     const fetchDatabooks = async ()=>{
@@ -25,8 +27,25 @@ export default function BookStore() {
   },[page,chooseOrder,chooseCata])
 
   useEffect(()=>{
-    console.log(books)
+    setBookInfo(books.filter((item:any)=>item.id==bookId)[0])
+  },[books,bookId])
+
+  useEffect(()=>{
+    if (books && books[0]){
+      setBookId(books[0].id)
+    }
   },[books])
+
+  useEffect(()=>{
+    const fetchDataComment = async()=>{
+      if (bookId){
+        const fetchedComment = await fetchComments(bookId)
+        setComments(fetchedComment)
+      }
+    }
+    fetchDataComment()
+  },[bookId])
+
 
   return (<>
     {/* screen size container */}
@@ -47,11 +66,11 @@ export default function BookStore() {
 
           {/* book information */}
           <div className="w-full h-3/5">
-            <BookInfo bookList={books} bookId={bookId}></BookInfo>
+            <BookInfo bookInfo={bookInfo}></BookInfo>
           </div>
           {/* book comments */}
           <div className="w-full h-[calc(40%-1.25rem)]">
-            <BookComments></BookComments>
+            <BookComments comments={comments}></BookComments>
           </div>
 
         </div>

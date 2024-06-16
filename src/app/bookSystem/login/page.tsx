@@ -1,12 +1,49 @@
 "use client"
 import Image from "next/image"
 import clsx from "clsx"
-import { useState } from "react"
-import { fetchLogOrRegister } from "@/app/lib/data"
+import { useEffect, useState } from "react"
+import { fetchUsers,fetchLogin, fetchRegister } from "@/app/lib/data"
+import { QueryResult, QueryResultRow } from "@vercel/postgres"
+import { useRouter } from 'next/navigation'
 
 export default function Login() {
 
   const [visible,setVisible]=useState(false)
+  const [userName,setUserName]=useState('')
+  const [password,setPassword]=useState('')
+  const [userList,setUserList]=useState<QueryResultRow>([])
+
+useEffect(()=>{
+  const getUserList = async () =>{
+    const fetchedUserList = await fetchUsers()
+    setUserList(fetchedUserList)
+  }  
+  getUserList()
+},[])
+
+useEffect(()=>{
+    console.log(userList)
+},[userList])
+
+
+const router = useRouter()
+
+  async function logOrRegister(name:string,password:string){
+    
+    if (userList.filter((item:any)=>item.name==name).length!=0){
+      const result = await fetchLogin(name,password)
+      if (result!==name){
+        alert(result)
+      }else{
+        sessionStorage.setItem('user',result)
+        router.push('/bookSystem/store')
+      }
+    }else{
+      const result = await fetchRegister(name,password)
+      sessionStorage.setItem('user',result)
+      router.push('/bookSystem/store')
+    }
+  }
 
   return (<>
     {/* screen size element */}
@@ -37,7 +74,7 @@ export default function Login() {
               <div className="space-y-2">
                 <label>Enter your name: </label>
                 <div>
-                  <input type="text" name="name" id="name" autoComplete="off" required className="px-2 w-3/4"/>
+                  <input type="text" name="name" id="name" autoComplete="off" required className="px-2 w-3/4" value={userName} onChange={(e)=>setUserName(e.target.value)}/>
                 </div>
               </div>
               {/* password */}
@@ -47,7 +84,7 @@ export default function Login() {
                   <input type={clsx({
                     "password":visible==false,
                     "text":visible==true,
-                  })} name="password" id="password" autoComplete="off" required  className="px-2 w-3/4"/>
+                  })} name="password" id="password" autoComplete="off" required  className="px-2 w-3/4" value={password} onChange={(e)=>setPassword(e.target.value)}/>
                   <span className="material-symbols-outlined -translate-x-[100%] translate-y-[20%] float-end cursor-pointer" onClick={()=>setVisible(!visible)}>{clsx({
                     'visibility':visible==true,
                     'visibility_off':visible==false,
@@ -55,7 +92,7 @@ export default function Login() {
                 </div>
               </div>
               <div className="flex justify-center">
-                <input type="submit" value=" Log in/Register " className="border-double border-4 border-gray-600 p-2 rounded-full cursor-pointer hover:bg-gray-600  hover:text-yellow-200"/>
+                <input type="button"  onClick={()=>logOrRegister(userName,password)} value=" Log in/Register " className="border-double border-4 border-gray-600 p-2 rounded-full cursor-pointer hover:bg-gray-600  hover:text-yellow-200"/>
               </div>
             </form>
           </div>

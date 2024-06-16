@@ -90,7 +90,9 @@ async function seedComments(client) {
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS comments (
         id INTEGER NOT NULL,
-        content TEXT NOT NULL
+        content TEXT NOT NULL,
+        account TEXT NOT NULL,
+        time DATE NOT NULL
       );
     `;
 
@@ -100,8 +102,8 @@ async function seedComments(client) {
     const insertedComments = await Promise.all(
       comments.map(
         (comment) => client.sql`
-        INSERT INTO comments (id, content)
-        VALUES (${comment.id}, ${comment.content});
+        INSERT INTO comments (id, content, account, time)
+        VALUES (${comment.id}, ${comment.content}, ${comment.account}, ${comment.time});
       `,
       ),
     );
