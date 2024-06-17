@@ -112,6 +112,10 @@ export default function BookStore() {
     <div className="w-screen h-screen  flex flex-col justify-center">
 
 
+      {/* below is a message for small screen  */}
+      <div className="block lg:hidden px-10">
+        This site is not suitbale on small screens, if you are using your mobile, switch to PC. If you are already on PC, make your browser window larger.
+      </div>
       {/* below is for large screen */}
       {/* the main rectangular part */}
       <div className=" hidden justify-center space-x-5 lg:flex">
