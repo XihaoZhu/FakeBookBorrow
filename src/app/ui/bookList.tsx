@@ -5,13 +5,19 @@ import { QueryResultRow } from "@vercel/postgres"
 import clsx from "clsx"
 import { useEffect, useState } from "react"
 
-export default function BookList({bookList,setChooseCata,chooseCata,bookId,setBookId,chooseOrder,setChooseOrder}:any){
+export default function BookList({bookList,setChooseCata,chooseCata,bookId,setBookId,chooseOrder,setChooseOrder,setPage,page,maxPage}:any){
 
   const Cata=["Love story","History","Time travel","War","Ancient"]
 
 
   function clickBook(bookId:number):void{
     setBookId(bookId)
+  }
+
+  function switchPage (num:number) {
+    if ((page+ num <= maxPage)&&(page + num > 0)){
+      setPage(page+num)
+    }
   }
 
 
@@ -63,7 +69,9 @@ export default function BookList({bookList,setChooseCata,chooseCata,bookId,setBo
           </li>)}
         </ul>
         <div className="bg-blue-200/50 w-full absolute bottom-0">
-          pagination, I have to leave it here until I finished the back end part
+          <span className="material-symbols-outlined absolute bottom-5 left-5 cursor-pointer" onClick={()=>switchPage(-1)}>arrow_back</span>
+          <span className="absolute bottom-5 left-[45%]">{page}/{maxPage}</span>
+          <span className="material-symbols-outlined absolute bottom-5 right-5 cursor-pointer" onClick={()=>switchPage(1)}>arrow_forward</span>
         </div>
     </div>
   </div>

@@ -55,7 +55,8 @@ async function seedBooks(client) {
     time DATE NOT NULL,
     cata TEXT DEFAULT NULL,
     status INTEGER DEFAULT 0,
-    description TEXT NOT NULL
+    description TEXT NOT NULL,
+    borrowed TEXT
   );
 `;
 

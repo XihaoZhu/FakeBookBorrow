@@ -35,12 +35,12 @@ const router = useRouter()
       if (result!==name){
         alert(result)
       }else{
-        sessionStorage.setItem('user',result)
+        sessionStorage.setItem('Nick_user',result)
         router.push('/bookSystem/store')
       }
     }else{
       const result = await fetchRegister(name,password)
-      sessionStorage.setItem('user',result)
+      sessionStorage.setItem('Nick_user',result)
       router.push('/bookSystem/store')
     }
   }

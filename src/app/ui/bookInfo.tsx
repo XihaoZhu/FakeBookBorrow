@@ -4,8 +4,10 @@ import Image from "next/image"
 import { Book } from "../lib/definitions"
 import { use, useEffect, useState } from "react"
 import { format } from 'date-fns'
+import { borrowBook,returnBook } from "../lib/data"
+import { books } from "../lib/placeholder-data"
 
-export default function BookInfo({bookInfo}:any){
+export default function BookInfo({bookInfo, bookId, userName, setBooks, borrow,returnB}:any){
 
   const isBookInfoValid = bookInfo && bookInfo.name && bookInfo.author && bookInfo.time;
 
@@ -32,13 +34,18 @@ export default function BookInfo({bookInfo}:any){
         <li>Published: {bookInfo?format(bookInfo.time, 'yyyy-MM-dd'):''}</li>
         <li className="max-h-36 overflow-auto">Description : {bookInfo.description}</li>
       </ul>
-      {bookInfo.status !== 0 && (
-        <button className="absolute bottom-10 left-10 bg-gray-100 py-2 px-4 rounded-lg border-solid border-2 border-white shadow-md shadow-orange-800 hover:scale-110">
-          Unavailable: borrowed by {bookInfo.status}
+      {bookInfo.status !== 0 && bookInfo.borrowed !== userName && (
+        <button className="absolute bottom-10 left-10 bg-gray-100 py-2 px-4 rounded-lg border-solid border-2 border-white shadow-md">
+          Unavailable: borrowed by {bookInfo.borrowed}
+        </button>
+      )}
+      {bookInfo.status !== 0 && bookInfo.borrowed == userName && (
+        <button className="absolute bottom-10 left-10 bg-gray-100 py-2 px-4 rounded-lg border-solid border-2 border-white shadow-md shadow-orange-800 hover:scale-110" onClick={()=>returnB()}>
+          Return book
         </button>
       )}
       {bookInfo.status === 0 && (
-        <button className="absolute bottom-10 right-10 bg-yellow-200 py-2 px-4 rounded-lg border-solid border-2 border-white shadow-md shadow-orange-600 hover:scale-110">
+        <button className="absolute bottom-10 right-10 bg-yellow-200 py-2 px-4 rounded-lg border-solid border-2 border-white shadow-md shadow-orange-600 hover:scale-110" onClick={()=>borrow()}>
           BORROW !
         </button>
       )}

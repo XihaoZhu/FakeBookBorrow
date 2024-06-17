@@ -39,12 +39,12 @@ export default function AboutMe() {
           <div className=" bg-gradient-to-b from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% hidden lg:block w-full h-[72rem] relative bottom-0">
             {/* words for my motivation learn front end */}
             <div className="hidden lg:block w-[40rem] h-[24rem] absolute top-24 right-14 z-10 text-indigo-100">
-            I always like things to be visible. From what I&apos;ve learned in my free time, you can tell—I enjoy working with tools like Photoshop and Blender.<br/>
+            I always like visualizations. From what I&apos;ve learned in my free time, you can tell—such as Photoshop and Blender.<br/>
             Meanwhile, I&apos;m also interested in logic. I really like the idea of everything operating with clear rules. And I like figuring out how things work after studying and thinking. That&apos;s why I thought I would enjoy aerospace engineering.<br/>
             I still remember the moment when I created a simple animation in MATLAB (a tree with snow falling). It was an additional task in an undergraduate coursework. I felt satisfied and happy when achieving it, making something vividly visible with logical codes.<br/>
             Front-end development seems to be a job perfectly meets both of my fantasies.<br/>
             I&apos;ve been working hard learning front-end development on my own. Each time I learn something new or finish a practice project, I feel more certain that I really like it as a job.<br/>
-            I know it can be hard to enter an industry without a relevant background. I&apos;ve always believed that as long as you work hard, there will be gains.<br/>
+            I know it can be hard to enter an industry without a relevant background. But I&apos;ve also believed that as long as you work hard, there will be gains.<br/>
             Even though I haven&apos;t had the chance to enter this industry yet, I will keep studying and improving my skills. I believe I will become a front-end developer and continue to get better in this field over time. As my favorite Chinese idiom says, &quot;事在人为.&quot;<br/>
 
 

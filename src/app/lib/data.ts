@@ -147,3 +147,90 @@ export async function fetchBooks(
     throw new Error('Failed to fetch books.');
   }
 }
+
+export async function borrowBook(id:number, user:string) {
+  
+  noStore()
+
+  try {
+    await sql`
+      UPDATE books
+      SET status = 1,
+      borrowed = ${user}
+      WHERE id = ${id}
+    `
+
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to borrow books.');
+  }
+
+}
+
+export async function returnBook(id:number) {
+  
+  noStore()
+
+  try {
+    await sql`
+      UPDATE books
+      SET status = 0,
+      borrowed = null
+      WHERE id = ${id}
+    `
+
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to return books.');
+  }
+
+}
+
+export async function makeComment(id:number,comment:string,account:string, time:string) {
+
+  try {
+    
+    await sql`
+    INSERT into comments (id, content, account, time)
+    VALUES(${id}, ${comment}, ${account}, ${time})
+    `
+
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to make comments.');
+  }
+  
+}
+
+export async function pageCount(
+  cata: string,
+  ) {
+  
+  const ITEMS_PER_PAGE = 5;
+  
+  noStore();
+
+  try {
+
+    let booksCount 
+
+    if (cata!='all'){
+        booksCount = await sql`
+         SELECT COUNT(*)
+         FROM books
+         WHERE cata = ${cata}
+       `;
+      }
+    else {
+        booksCount = await sql`
+          SELECT COUNT(*)
+          FROM books
+        `;
+      }
+
+    return Math.floor(booksCount.rows[0].count/5)+1;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to count books.');
+  }
+}

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { format } from "date-fns"
 
-export default function BookComments({comments}:any){
+export default function BookComments({comments,bookId}:any){
 
   const mockComment=[{book:'bookname',person:'Nickcommenter',content:'I like this book',time:"2012-04-45"},{book:'bookname',person:'Nickcommenter',content:'I like this book too',time:"2012-04-45"}]
 
@@ -18,7 +18,7 @@ export default function BookComments({comments}:any){
 
   useEffect(()=>{
     setWhich(0)
-  },[comments])
+  },[comments,bookId])
 
   const isCommentsValid = comments && comments.length
 

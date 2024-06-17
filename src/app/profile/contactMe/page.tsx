@@ -61,7 +61,7 @@ export default function ContactMe() {
       <div className="col-span-1 flex-col justify-center text-left leading-[2vw] hidden xl:flex">
           <div>
             The right part should be functional.(At least it was when I tested it)<br/>
-            But how it works? It actually sends me an email with my own account.<br/>
+            It actually sends me an email with my own account.<br/>
             So even I have asked for your email address there, after you leave me a message.<br/>
             please still send me something with the email adress you left after.<br/>
             (For security reason, it may not functional after some time until I valid it again)

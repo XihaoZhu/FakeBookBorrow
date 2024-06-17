@@ -55,7 +55,7 @@ export default function Skills() {
             {/* first project */}
             <Link className="w-1/3 h-full flex cursor-pointer" href="/bookSystem" target="_blank">
               <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-5">
-                <Image src={"/pics/react_project.png"} alt="project pic" sizes="auto" width={2} height={1} className="w-full rounded-lg"/>
+                <Image src={"/pics/bookSystem_project.png"} alt="project pic" sizes="auto" width={2} height={1} className="w-full rounded-lg"/>
                 {/* concise description for small screen */}
                 <div className="block lg:hidden">
                   Current project: a Full stack projects. Click to access to the build in book borrow system.
@@ -66,9 +66,9 @@ export default function Skills() {
                 <div>
                 The project you&apos;re viewing now is Nick&apos;s third project and his first full-stack project.<br/>
                 It&apos;s the first time he&apos;s used TypeScript instead of JavaScript, although he learned TS before building his second project.<br/><br/>
-                The entire project is built using Next.js and deployed on Vercel. All basic CSS is implemented with Tailwind. Nick also made this project mobile-friendly, so feel free to visit this website on your mobile devices.<br/><br/>
-                A book borrowing system based on PostgreSQL is integrated as a demonstration of back-end skills—click to access it.<br/><br/>
-                (All three of Nick&apos;s projects are designed and built entirely by him without using any templates. He also created other projects as practice while learning. However, he believes projects made by following instructions aren&apos;t a sincere representation of his skills, even if they may look better.)<br/>
+                The entire project is built using Next.js and deployed on Vercel. All basic CSS is implemented with Tailwind.<br/><br/>
+                A book borrowing system based on PostgreSQL is integrated as a demonstration of back-end skills----click to access it.<br/><br/>
+                (All three of Nick&apos;s projects were designed and built entirely by himself without using any templates. He also created other projects as practice while learning. However, he believes projects made by following instructions aren&apos;t a sincere representation of his skill, even they might look better.)<br/>
                 </div>              
               </div>
             </Link>
@@ -105,7 +105,7 @@ export default function Skills() {
                 Nick&apos;s first personal project, quite simple and the design may not so good. <br /><br />
                 He likes it, feeling it&apos;s a milestone. <br /><br />
                 This project was made with react.Js. <br /><br />
-                (BTW Nick has learnt a lot more things after this project was finished, while the notes page in this project is not updated.)
+                (BTW Nick has learnt a lot more things after this project was finished, while the notes page in this project is no longer updated.)
                 </div>              
               </div>
             </Link>
