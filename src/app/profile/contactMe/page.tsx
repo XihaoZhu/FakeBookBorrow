@@ -19,6 +19,8 @@ export default function ContactMe() {
       method:'POST',
       body:formData,
     })
+
+    alert('Message sent!')
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>){
