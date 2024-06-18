@@ -62,6 +62,7 @@ const router = useRouter()
             1. The idea is making believe you are renting book from Nick (but of course he has no book for you) <br /><br />
             <b>2. To make it easier, he reduced the register part. If you&apos;re logging in with the name and password for the first time, the registraition is automatically done for you. (I&apos;ll let you know if the name is occupied.) </b><br /><br />
             3. You&apos;ll be able to do something with your account, so better remember your name and password, even it is still okay to view with new names every time. <br /><br />
+            <span className="text-red-600">Do not use password you normally use!</span>
           </div>
         </div>
         {/* function part */}
