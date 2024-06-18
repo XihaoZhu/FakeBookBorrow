@@ -80,7 +80,7 @@ export default function BookStore() {
       setMaxPage(fetchedMaxPage)
       }
       fetchDatabooks()
-      alert('Pretend you have the book now! Yes you own me a book now!')
+      alert('Pretend you have the book now! Yes you owe me a book now!')
   }
 
   async function returnB () {
@@ -121,7 +121,7 @@ export default function BookStore() {
       <div className=" hidden justify-center space-x-5 lg:flex">
         
         {/* list part */}
-        <div className="lg:w-[20rem] xl:w-[30rem] h-[45rem]">
+        <div className="lg:w-[30rem] h-[45rem]">
           <BookList bookList={books}  setChooseCata={setChooseCata} chooseCata={chooseCata} setBookId={setBookId} bookId={bookId} setChooseOrder={setChooseOrder} chooseOrder={chooseOrder} setPage={setPage} page={page} maxPage={maxPage}></BookList>
         </div>
         

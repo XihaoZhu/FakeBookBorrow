@@ -35,7 +35,7 @@ export default function BookInfo({bookInfo, bookId, userName, setBooks, borrow,r
         <li className="max-h-36 overflow-auto">Description : {bookInfo.description}</li>
       </ul>
       {bookInfo.status !== 0 && bookInfo.borrowed !== userName && (
-        <button className="absolute bottom-10 left-10 bg-gray-100 py-2 px-4 rounded-lg border-solid border-2 border-white shadow-md">
+        <button className="absolute bottom-10 left-10 bg-gray-100 py-2 px-4 rounded-lg border-solid border-2 border-white shadow-md max-w-[70%]">
           Unavailable: borrowed by {bookInfo.borrowed}
         </button>
       )}
