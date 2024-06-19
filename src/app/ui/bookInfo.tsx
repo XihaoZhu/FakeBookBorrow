@@ -12,7 +12,7 @@ export default function BookInfo({bookInfo, bookId, userName, setBooks, borrow,r
   const isBookInfoValid = bookInfo && bookInfo.name && bookInfo.author && bookInfo.time;
 
   if (!isBookInfoValid) {
-    return <div>Loading...</div>;
+    return <div>No book is chosen</div>;
   }
 
   return (<>

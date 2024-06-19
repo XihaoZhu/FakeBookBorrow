@@ -46,6 +46,9 @@ export default function BookList({bookList,setChooseCata,chooseCata,bookId,setBo
         {Cata.map((item,index)=><li className={clsx("px-2 text-center py-1 rounded-full",{
           "border-dashed border-2 border-indigo-400":chooseCata==item,
         })} key={index} onClick={()=>setChooseCata(item)}>{item}</li>)}
+        <li className={clsx("px-2 text-center py-1 rounded-full",{
+          "border-dashed border-2 border-indigo-400":chooseCata=='borrowed',
+        })} onClick={()=>setChooseCata('borrowed')}>Borrowed by You</li>
       </ul>
     </div>
     {/* list */}

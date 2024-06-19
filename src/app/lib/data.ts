@@ -90,11 +90,14 @@ export async function fetchBooks(
   currentPage: number,
   order: 'thumbs'|'time',
   cata: string,
+  borrowed?:string
   ) {
-  
+
+    
   const ITEMS_PER_PAGE = 5;
-  
+    
   noStore();
+  
 
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
@@ -102,44 +105,65 @@ export async function fetchBooks(
 
     let books 
 
-    if (cata!='all'){
+    if (borrowed) {
       if (order !='thumbs'){
         books = await sql`
-         SELECT *
-         FROM books
-         WHERE cata = ${cata}
-         ORDER BY time DESC
-         LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
-       `;
-      }
-      else{
-        books = await sql`
-         SELECT *
-         FROM books
-         WHERE cata = ${cata}
-         ORDER BY thumbs DESC
-         LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
-       `;
-      }
-    }
-    else {
-      if (order!='thumbs'){
-        books = await sql`
-          SELECT *
-          FROM books
-          ORDER BY time DESC
-          LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
-        `;
+           SELECT *
+           FROM books
+           WHERE borrowed = ${borrowed}
+           ORDER BY time DESC
+           LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+         `
       }
       else {
         books = await sql`
-          SELECT *
-          FROM books
-          ORDER BY thumbs DESC
-          LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
-        `;
+           SELECT *
+           FROM books
+           WHERE borrowed = ${borrowed}
+           ORDER BY thumbs DESC
+           LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+         `
       }
+    }else{
+      if (cata!='all'){
+        if (order !='thumbs'){
+          books = await sql`
+           SELECT *
+           FROM books
+           WHERE cata = ${cata}
+           ORDER BY time DESC
+           LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+         `;
+        }
+        else{
+          books = await sql`
+           SELECT *
+           FROM books
+           WHERE cata = ${cata}
+           ORDER BY thumbs DESC
+           LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+         `;
+        }
       }
+      else {
+        if (order!='thumbs'){
+          books = await sql`
+            SELECT *
+            FROM books
+            ORDER BY time DESC
+            LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+          `;
+        }
+        else {
+          books = await sql`
+            SELECT *
+            FROM books
+            ORDER BY thumbs DESC
+            LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
+          `;
+        }
+        }
+    }
 
     return books.rows;
   } catch (error) {
@@ -204,6 +228,7 @@ export async function makeComment(id:number,comment:string,account:string, time:
 
 export async function pageCount(
   cata: string,
+  borrowed?:string
   ) {
   
   const ITEMS_PER_PAGE = 5;
@@ -214,13 +239,21 @@ export async function pageCount(
 
     let booksCount 
 
-    if (cata!='all'){
-        booksCount = await sql`
-         SELECT COUNT(*)
-         FROM books
-         WHERE cata = ${cata}
+
+    if (cata=='borrowed'){
+      booksCount = await sql`
+      SELECT COUNT(*)
+      FROM books
+      WHERE borrowed = ${borrowed}
+      `;
+    }
+    else if (cata!='all'){
+      booksCount = await sql`
+       SELECT COUNT(*)
+       FROM books
+       WHERE cata = ${cata}
        `;
-      }
+     }
     else {
         booksCount = await sql`
           SELECT COUNT(*)

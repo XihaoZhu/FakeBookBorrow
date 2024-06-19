@@ -23,15 +23,25 @@ export default function BookStore() {
   const [maxPage,setMaxPage]=useState(1)
 
   useEffect(()=> {
+  if (chooseCata=='borrowed'){
+      const fetchDatabooks = async ()=>{
+        const fetchedBooks = await fetchBooks(page,chooseOrder,chooseCata,userName);
+        setBooks(fetchedBooks);
+        const fetchedMaxPage = await pageCount(chooseCata,userName)
+        setMaxPage(fetchedMaxPage)
+      }
+      fetchDatabooks()
+  }else{
     const fetchDatabooks = async ()=>{
     const fetchedBooks = await fetchBooks(page,chooseOrder,chooseCata);
-      setBooks(fetchedBooks);
+    setBooks(fetchedBooks);
     const fetchedMaxPage = await pageCount(chooseCata)
-      setMaxPage(fetchedMaxPage)
+    setMaxPage(fetchedMaxPage)
     }
     fetchDatabooks()
+  }
 
-  },[page,chooseOrder,chooseCata])
+  },[page,chooseOrder,chooseCata,userName])
 
   useEffect(()=>{
     setBookInfo(books.filter((item:any)=>item.id==bookId)[0])
@@ -45,13 +55,18 @@ export default function BookStore() {
 
   useEffect(()=>{
     const fetchDataComment = async()=>{
-      if (bookId){
-        const fetchedComment = await fetchComments(bookId)
-        setComments(fetchedComment)
+      if (books.length==0){
+        setComments('')
+      }
+      else{
+        if (bookId){
+          const fetchedComment = await fetchComments(bookId)
+          setComments(fetchedComment)
+        }
       }
     }
     fetchDataComment()
-  },[bookId])
+  },[bookId,books])
 
   const router = useRouter()
 
@@ -73,27 +88,47 @@ export default function BookStore() {
   // for functions borrow and return 
   async function borrow () {
     await borrowBook(bookId,userName)
-    const fetchDatabooks = async ()=>{
-      const fetchedBooks = await fetchBooks(page,chooseOrder,chooseCata);
+    if (chooseCata=='borrowed'){
+      const fetchDatabooks = async ()=>{
+        const fetchedBooks = await fetchBooks(page,chooseOrder,chooseCata,userName);
         setBooks(fetchedBooks);
-      const fetchedMaxPage = await pageCount(chooseCata)
-      setMaxPage(fetchedMaxPage)
+        const fetchedMaxPage = await pageCount(chooseCata,userName)
+        setMaxPage(fetchedMaxPage)
       }
       fetchDatabooks()
+  }else{
+    const fetchDatabooks = async ()=>{
+    const fetchedBooks = await fetchBooks(page,chooseOrder,chooseCata);
+    setBooks(fetchedBooks);
+    const fetchedMaxPage = await pageCount(chooseCata)
+    setMaxPage(fetchedMaxPage)
+    }
+    fetchDatabooks()
+  }
       alert('Pretend you have the book now! Yes you owe me a book now!')
   }
 
   async function returnB () {
     await returnBook(bookId)
-    const fetchDatabooks = async ()=>{
-      const fetchedBooks = await fetchBooks(page,chooseOrder,chooseCata);
+    if (chooseCata=='borrowed'){
+      const fetchDatabooks = async ()=>{
+        const fetchedBooks = await fetchBooks(page,chooseOrder,chooseCata,userName);
         setBooks(fetchedBooks);
-      const fetchedMaxPage = await pageCount(chooseCata)
+        const fetchedMaxPage = await pageCount(chooseCata,userName)
         setMaxPage(fetchedMaxPage)
       }
       fetchDatabooks()
+  }else{
+    const fetchDatabooks = async ()=>{
+    const fetchedBooks = await fetchBooks(page,chooseOrder,chooseCata);
+    setBooks(fetchedBooks);
+    const fetchedMaxPage = await pageCount(chooseCata)
+    setMaxPage(fetchedMaxPage)
+    }
+    fetchDatabooks()
+  }
     const newComment = prompt("You've just return the book, you can leave a comment if you want")
-    if (newComment){
+    if (newComment!=null){
       const now = new Date()
       await makeComment(bookId, newComment, userName, format(now,'yyyy-MM-dd'))
       const fetchDataComment = async()=>{

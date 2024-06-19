@@ -23,7 +23,7 @@ export default function BookComments({comments,bookId}:any){
   const isCommentsValid = comments && comments.length
 
   if (!isCommentsValid) {
-    return <div className="bg-[#bdf0ffb3] w-full h-full rounded-xl py-5 px-5 space-y-10 relative">No Comments have been left for this book yet</div>
+    return <div className="bg-[#bdf0ffb3] w-full h-full rounded-xl py-5 px-5 space-y-10 relative">No Comments available</div>
   }
 
   return (<>
