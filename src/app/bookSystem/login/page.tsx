@@ -29,7 +29,10 @@ useEffect(()=>{
 const router = useRouter()
 
   async function logOrRegister(name:string,password:string){
-    
+    if (name==''||password==''){
+      alert('empty value is not allowed')
+      return 
+    }
     if (userList.filter((item:any)=>item.name==name).length!=0){
       const result = await fetchLogin(name,password)
       if (result!==name){
