@@ -128,7 +128,7 @@ export default function BookStore() {
     fetchDatabooks()
   }
     const newComment = prompt("You've just return the book, you can leave a comment if you want")
-    if (newComment!=null){
+    if (newComment!=null&&newComment!=''){
       const now = new Date()
       await makeComment(bookId, newComment, userName, format(now,'yyyy-MM-dd'))
       const fetchDataComment = async()=>{
